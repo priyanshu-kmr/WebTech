@@ -1,0 +1,154 @@
+/* MainPage.css */
+body {
+  background-color: #151517; /* Darker background color */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d2d32;
+  padding: 0 1rem; /* Horizontal padding only */
+  color: #fff;
+  height: 72px; /* Fixed height for the header */
+}
+
+.header div {
+  margin-left: 10px; /* Move the search bar and button to the right */
+}
+
+.header input {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-button {
+  height: 72px; /* Match the height of the header */
+  width: 60px; /* Fixed width */
+  padding: 0; /* Remove default padding */
+  background-color: #2d2d32 !important; /* Background color */
+  color: #fff !important;
+  transition: background-color 0.3s ease;
+  border-radius: 0px !important;
+}
+
+.search-button:hover {
+  background-color: #3d3d42 !important; /* Darker shade on hover */
+}
+
+.icon-button {
+  height: 72px; /* Match the height of the header */
+  width: 60px; /* Fixed width */
+  padding: 0; /* Remove default padding */
+  background-color: #2d2d32 !important; /* Background color */
+  color: #fff !important;
+  transition: background-color 0.3s ease;
+  border-radius: 0px !important;
+}
+
+.icon-button:hover {
+  background-color: #3d3d42 !important;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the movie containers */
+  padding: 20px;
+}
+
+.movie-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  transition: transform 0.3s ease;
+  overflow: hidden; /* Ensure the image does not bleed outside the container */
+  border-radius: 8px; /* Apply border-radius to the container */
+  width: calc(100% / 8 - 20px); /* Ensure 8 movie posters per row */
+  height: 300px; /* Fixed height for the movie container */
+}
+
+.movie-container img {
+  width: 100%; /* Ensure the image takes the full width of the container */
+  height: 100%; /* Ensure the image takes the full height of the container */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Add filter transition */
+}
+
+.movie-container:hover {
+  transform: scale(1.1);
+}
+
+.movie-container:hover img {
+  filter: blur(3px); /* Apply Gaussian blur on hover */
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: height 0.3s ease; /* Specify the property being transitioned */
+}
+
+.movie-container:hover .overlay {
+  height: 100%;
+}
+
+.overlay-content {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  text-align: center;
+  width: 100%; /* Ensure the content is centered */
+  z-index: 1; /* Ensure the text is above the blur */
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.load-more-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #2d2d32;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-button:hover {
+  background-color: #3d3d42;
+}
+
+.load-more-button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* MainPage.css */
+.sort-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.sort-container select {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+}

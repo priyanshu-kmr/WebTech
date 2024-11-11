@@ -1,0 +1,13 @@
+/* MoviePage.css */
+.video-container {
+    margin: 20px 0;
+    max-width: 800px;
+    width: 100%;
+}
+
+.video-placeholder {
+    background: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+}

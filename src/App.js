@@ -1,0 +1,24 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { UserProvider } from './components/UserContext/UserContext';
+import MainPage from './components/MainPage/MainPage';
+import LoginPage from './components/Login/Login';
+import SignupPage from './components/Signup/Signup';
+import Preferences from './components/Preferences/Preferences';
+import MoviePage from './components/Movie/MoviePage';
+
+const App = () => (
+  <UserProvider>
+    <Router>
+      <Routes>
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/preferences" element={<Preferences />} />
+        <Route path="/movie/:movieId" element={<MoviePage />} />
+      </Routes>
+    </Router>
+  </UserProvider>
+);
+
+export default App;
