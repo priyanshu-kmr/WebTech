@@ -1,0 +1,80 @@
+/* css/Settings.css */
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #151517;
+}
+
+.settings-box {
+    background-color: #2d2d32;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-box h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    color: #fff;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 4px;
+    border: 1px solid #3d3d42;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.error-message {
+    color: #ff4444;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #3d3d42;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #4d4d52;
+}
+
+.delete-account-button {
+    margin-top: 1rem;
+    background-color: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    transition: all 0.3s ease;
+}
+
+.delete-account-button:hover {
+    background-color: #ff4444;
+    color: #fff;
+    transform: scale(1.02);
+}
