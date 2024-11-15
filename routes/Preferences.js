@@ -1,7 +1,7 @@
 // routes/Preferences.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User.js'); // Ensure this path is correct
+const User = require('../models/User.js');
 
 router.post('/', async (req, res) => {
   const { userId, genres } = req.body;
