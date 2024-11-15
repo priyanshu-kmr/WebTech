@@ -6,7 +6,7 @@ const loginRoutes = require('./routes/Login.js');
 const preferencesRoutes = require('./routes/Preferences.js');
 const settingsRoutes = require('./routes/Settings');
 
-const ATLAS_URI = 'mongodb+srv://Priyanshu:DqXO8tWPyeCmUHRU@cluster0.v9gwp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const ATLAS_URI = 'ATLAS_URI';
 
 const app = express();
 
