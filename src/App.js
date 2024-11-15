@@ -6,6 +6,7 @@ import LoginPage from './components/Login/Login';
 import SignupPage from './components/Signup/Signup';
 import Preferences from './components/Preferences/Preferences';
 import MoviePage from './components/Movie/MoviePage';
+import Settings from './components/MainPage/Settings';
 
 const App = () => (
   <UserProvider>
@@ -16,6 +17,7 @@ const App = () => (
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/preferences" element={<Preferences />} />
         <Route path="/movie/:movieId" element={<MoviePage />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   </UserProvider>

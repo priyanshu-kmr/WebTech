@@ -1,0 +1,80 @@
+/* css/DeleteAccountPopup.css */
+.delete-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.delete-popup {
+    background-color: #2d2d32;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.delete-popup h3 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.delete-popup p {
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+
+.delete-popup input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background-color: #1e1e1e;
+    border: 1px solid #3d3d42;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.button-group button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+.delete-button:hover {
+    background-color: #ff4444;
+    color: #fff;
+}
+
+.error-message {
+    color: #ff4444;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

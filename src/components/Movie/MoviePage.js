@@ -1,13 +1,24 @@
 // components/MoviePage/MoviePage.js
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../../css/MoviePage.css';
+import RatingVisual from './RatingVisual';
+import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchIcon from '@mui/icons-material/Search';
+import AccountPopup from '../MainPage/AccountPopup';
+import { UserContext } from '../UserContext/UserContext';
 
 const MoviePage = () => {
     const { movieId } = useParams();
+    const navigate = useNavigate();
+    const { user } = useContext(UserContext);
     const [movie, setMovie] = useState(null);
+    const [movieDetails, setMovieDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -17,8 +28,8 @@ const MoviePage = () => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch movie details');
                 }
-                const movieDetails = await response.json();
-                setMovie(movieDetails);
+                const movieData = await response.json();
+                setMovie(movieData);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -26,8 +37,40 @@ const MoviePage = () => {
             }
         };
 
+        const fetchAdditionalDetails = async () => {
+            try {
+                const response = await fetch(`http://localhost:3001/movie_details/${movieId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch additional movie details');
+                }
+                const detailsData = await response.json();
+                setMovieDetails(detailsData);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
         fetchMovieDetails();
+        fetchAdditionalDetails();
     }, [movieId]);
+
+    const handleSearch = async () => {
+        navigate(`/search?query=${searchQuery}`);
+    };
+
+    const handleInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
+    const togglePopup = () => {
+        setPopupVisible(!isPopupVisible);
+    };
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -43,24 +86,66 @@ const MoviePage = () => {
 
     return (
         <div className="movie-page">
-            <h1>{movie.title}</h1>
-            <p>Year: {movie.year}</p>
-            <p>Genres: {movie.genres.join(', ')}</p>
-            <p>Average Rating: {movie.average_rating}</p>
-            <p>Number of Ratings: {movie.rating_count}</p>
-            
-            <div className="video-container">
-                {movie.video_link ? (
-                    <video controls width="100%">
-                        <source src={movie.video_link} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                ) : (
-                    <div className="video-placeholder">
-                        <p>Video preview not available</p>
+            <header className="header">
+                <div>
+                    <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        value={searchQuery}
+                        onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
+                    />
+                    <IconButton className="search-button" disableRipple disableFocusRipple onClick={handleSearch}>
+                        <SearchIcon />
+                    </IconButton>
+                </div>
+                <IconButton className="icon-button" disableRipple disableFocusRipple onClick={togglePopup}>
+                    <AccountCircleIcon />
+                </IconButton>
+            </header>
+            <div className="movie-content">
+                <div className="movie-info">
+                    <h1 className="movie-title">{movie.title}</h1>
+                    <div className="movie-rating-container">
+                        <RatingVisual rating={movie.average_rating}/>
+                        <p className="rating-text">Average Rating: {movie.average_rating.toFixed(2)}</p>
                     </div>
-                )}
+                    <div className="movie-metadata">
+                        <h2 className="movie-year">{movie.year}</h2>
+                        <div className="movie-genres">
+                            {movie.genres.map((genre, index) => (
+                                <span key={index} className="genre-tag">
+                                    {genre}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="video-container">
+                    {movie.video_link ? (
+                        <video controls width="100%">
+                            <source src={movie.video_link} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    ) : (
+                        <div className="video-placeholder">
+                            <p>Video preview not available</p>
+                        </div>
+                    )}
+                </div>
             </div>
+
+            {movieDetails && (
+                <div className="movie-details">
+                    <h2>Description</h2>
+                    <p>{movieDetails.description}</p>
+                    <h2>Directors</h2>
+                    <p>{movieDetails.directors.join(', ')}</p>
+                    <h2>Cast</h2>
+                    <p>{movieDetails.actors.join(', ')}</p>
+                </div>
+            )}
+            {isPopupVisible && <AccountPopup onClose={togglePopup} />}
         </div>
     );
 };

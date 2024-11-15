@@ -47,6 +47,10 @@ const AccountPopup = ({ onClose }) => {
         <p>{user?.username}</p>
         <button className="popup-button" onClick={handleLogout}>Logout</button>
         <button className="popup-button" onClick={handleSelectGenres}>Select Genres</button>
+        <button className='popup-button' onClick={() => {
+          onClose();
+          navigate('/settings');
+        }}>Settings</button>
       </div>
     </div>
   );
