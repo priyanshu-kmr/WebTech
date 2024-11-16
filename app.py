@@ -5,13 +5,11 @@ from flask_cors import CORS
 from video_scrapper import get_video
 from recommender import model, cosine_similarity
 import pickle
+from LLM import get_movie_details
+from recommender import recommend_movies
 
 app = Flask(__name__)
 CORS(app)
-
-from recommender import recommend_movies
-
-
 
 def filter_movies_by_genre(movies, genres, offset=0, limit=14):
 
@@ -153,6 +151,32 @@ def get_movie(movie_id):
             return jsonify(movie)
         else:
             return jsonify({"error": "Movie not found"}), 404
+
+@app.route('/movie_details/<movie_id>',methods=['GET'])
+def movie_details(movie_id):
+    movie_details = get_movie_details(movie_id)
+
+    return movie_details
+
+@app.route('/movie-recommendations/<movie_id>')
+def get_movie_recommendations(movie_id):
+    with open('ai/movies.json') as f:
+        movies = json.load(f)
+        
+    # Get current movie's genres
+    current_movie = movies.get(movie_id)
+    if not current_movie:
+        return jsonify({"error": "Movie not found"}), 404
+        
+    genres = current_movie.get('genres', [])
+    
+    # Get recommendations using existing filter function
+    recommendations = filter_movies_by_genre(movies, genres, limit=7)
+    
+    # Remove the current movie from recommendations if present
+    recommendations.pop(movie_id, None)
+    
+    return jsonify(recommendations)
 
 if __name__ == '__main__':
     app.run(port=3001)
