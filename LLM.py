@@ -3,7 +3,7 @@ import json
 import os
 
 # Set your API key
-genai.configure(api_key='AIzaSyDot_92mp4Zd4iz1NhTV9ULDfAkoNZQ0_g')
+genai.configure(api_key='API_KEY')
 model = genai.GenerativeModel("gemini-1.5-flash")
 def get_movie_details(movie_id):
     base_dir = os.path.dirname(os.path.abspath(__file__))
