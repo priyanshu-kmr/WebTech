@@ -33,7 +33,7 @@ const AccountPopup = ({ onClose }) => {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('user'); // Remove user data from local storage
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
