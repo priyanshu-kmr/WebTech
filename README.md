@@ -22,15 +22,16 @@ React is a JS library which is used for development of user interfaces of web ap
  Node.js provides a JavaScrpit runtime environment on the server side outside a web browser.
  - **Role in this project**: Server side runtime for Express.js
 
-## **Python Flask**
+### **Python Flask**
 Flask is a light weight Python web framework.
 - **Role in this project**: The flask hosts the recommender system backend in this project.
-- API for searching the top 15 most similar movies based on the query given the user.
-- API for getting the movie description, the cast and the directors of the movie using the Gemini API. (LLM.py)
+- handles the pre-computed embedding files for search which returns the top most similar movies based on the query provided by the user.
+- Get details of a specific movie from the locally stored JSON file containing the data for each movie.
 
 ## Database Used
-- The Database used in this project was provided by MovieLens 32M. The data was processed to a JSON file `movies.json`.
+- The Database used in this project was provided by MovieLens 32M. The data was processed to a JSON file `movies.json`. (Couldn't be included due to GitHub file size limitations)
 
 # How to run this project
 - You can run this project running the commands in your terminal `npm start` for react and mongoDb.
 - For python flask simply run the `app.py` file on your terminal.
+
