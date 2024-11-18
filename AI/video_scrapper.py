@@ -14,7 +14,7 @@ df = pd.read_csv('ai/merge_stats.csv')
 movie_indexes = df.sort_values('rating_count', ascending=False)['movieId'].tolist() 
 
 # Path to the ChromeDriver executable
-service = Service(r"C:\Users\ASUS\Downloads\chromedriver-win64\chromedriver-win64\chromedriver.exe")
+service = Service(r"AI\chromedriver.exe")
 
 def fix_imdb_ids(movie_id):
     if len(movie_id) < 7:
