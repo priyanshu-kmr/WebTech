@@ -31,7 +31,6 @@ Flask is a light weight Python web framework.
 ## Database Used
 - The Database used in this project was provided by MovieLens 32M. The data was processed to a JSON file `movies.json`. (Couldn't be included due to GitHub file size limitations)
 
-# How to run this project
-- You can run this project running the commands in your terminal `npm start` for react and mongoDb.
-- For python flask simply run the `app.py` file on your terminal.
+
+
 
