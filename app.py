@@ -146,7 +146,7 @@ def get_movie(movie_id):
                 movie['video_link'] = video_link
                 print(movie['video_link'])
             except Exception as e:
-                print(f"Error getting video")
+                print(f"Error getting video: API down")
                 movie['video_link'] = None
             return jsonify(movie)
         else:
