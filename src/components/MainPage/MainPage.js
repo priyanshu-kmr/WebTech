@@ -36,7 +36,7 @@ const MainPage = () => {
   const fetchMovies = async (newOffset = 0, reset = false) => {
     setIsLoading(true);
     const userGenres = user.genres;
-    const response = await fetch(`http://localhost:3001/filter?offset=${newOffset}&limit=14`, {  // Updated limit to 14
+    const response = await fetch(`http://localhost:3001/filter?offset=${newOffset}&limit=14`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,22 +44,20 @@ const MainPage = () => {
       body: JSON.stringify({ genre: userGenres })
     });
     const movies = await response.json();
-    console.log('Fetched Movies:', movies); // Log the returned JSON from /filter
+    console.log('Fetched Movies:', movies);
 
-    // Convert the movies object to an array of movie objects with their ids
     const moviesArray = Object.keys(movies).map(id => ({ id, ...movies[id] }));
 
-    // Append the new movies to the existing list or reset the list
     setRecommendedMovies(prevMovies => reset ? moviesArray : [...prevMovies, ...moviesArray]);
-    setOffset(newOffset + 14);  // Updated offset increment to 14
+    setOffset(newOffset + 14);
     setIsLoading(false);
   };
 
   const handleSearch = async (query = searchQuery) => {
     setIsLoading(true);
-    setOffset(0); // Reset offset on new search
-    navigator(`?query=${query}&offset=0&limit=14`);  // Updated limit to 14
-    const response = await fetch(`http://localhost:3001/search?query=${query}&offset=0&limit=14`);  // Updated limit to 14
+    setOffset(0);
+    navigator(`?query=${query}&offset=0&limit=14`);
+    const response = await fetch(`http://localhost:3001/search?query=${query}&offset=0&limit=14`);
     const searchResults = await response.json();
 
 
@@ -87,7 +85,6 @@ const MainPage = () => {
   const loadMoreMovies = async () => {
     setIsLoading(true);
     try {
-      // Always use search if there's a query, otherwise fetch recommendations
       if (searchQuery.trim()) {
         const response = await fetch(`http://localhost:3001/search?query=${searchQuery}&offset=${offset}&limit=14`);
         const searchResults = await response.json();
