@@ -24,7 +24,7 @@ React is a JS library which is used for development of user interfaces of web ap
 
 ### **Python Flask**
 Flask is a light weight Python web framework.
-- **Role in this project**: The flask hosts the recommender system backend in this project.
+- **Role in this project**: The flask hosts the recommender system backend in this project using the REST API architecture.
 - handles the pre-computed embedding files for search which returns the top most similar movies based on the query provided by the user.
 - Get details of a specific movie from the locally stored JSON file containing the data for each movie.
 
