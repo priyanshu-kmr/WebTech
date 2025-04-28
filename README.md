@@ -1,7 +1,7 @@
 # Movie Recommender 
 
 - This recommender helps the user get the most similar moves based on the past searches and the interested genres.
-The recommendation system uses two embedding files, one is title embedding which is used for direct title search and the second for larger context window which inclues the genres and the year as well. This file is used for semantic search.
+The recommendation system uses embeddings to get the closed search of the movie. These embeddings are also used for collaborative filtering by checking the closed user with similar genres.
 - The recommender performs cosine similarity search on the query given by the user and return top 15 most similar movies similar movies in the descending order of similarity.
 
 ## Technologies used
@@ -29,7 +29,7 @@ Flask is a light weight Python web framework.
 - Uses collaborative filtering based on similar user's preferred genre.
 - Get details of a specific movie from the locally stored JSON file containing the data for each movie.
 ## Database Used
-- The Database used in this project was provided by MovieLens 32M. The data was processed to a JSON file `movies.json`. (Couldn't be included due to GitHub file size limitations)
+- The Database used in this project was provided by MovieLens 32M. The data was then preprocessed to a JSON file `movies.json`.
 
 
 
